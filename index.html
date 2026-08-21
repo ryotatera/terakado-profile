@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>寺門 諒太 ｜ AI活用による事業構築</title>
+<meta name="description" content="AIで事業を立ち上げ、運用しています。リフォーム補助金ナビ、Claude Works、合トレ（4資格）などの実績と、止まった事業から分かったこと。">
+<meta property="og:title" content="寺門 諒太 ｜ AI活用による事業構築">
+<meta property="og:description" content="AIで事業を立ち上げ、運用しています。実績と、止まった事業から分かったこと。">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FAFAF7; --surface:#FFFFFF; --tint:#F4F2EC; --tint2:#FCF6EA;
+    --dark:#1F1F1F; --text:#1F1F1F; --sub:#4A4A4A; --sub2:#6B6B6B; --weak:#A8A29A;
+    --rule:#E5E2DA; --accent:#D97706; --accent-tint:#FBEFD9;
+    --good:#2F7D52; --bad:#B23A2A;
+    --font:"Noto Sans JP",-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",Meiryo,sans-serif;
+    --max:1240px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#111615; --surface:#181E1D; --tint:#1F2726; --tint2:#2A2417;
+      --dark:#0C100F; --text:#E7EBE9; --sub:#C2C8C6; --sub2:#96A19E; --weak:#7C8582;
+      --rule:#2B3331; --accent:#E0913B; --accent-tint:#2A2114;
+      --good:#6CB98C; --bad:#E2907A;
+    }
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font);
+       font-size:16px;line-height:1.9;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 40px}
+  a{color:var(--accent)}
+
+  header{padding:96px 0 56px;border-bottom:2px solid var(--text)}
+  .hero{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(300px,.85fr);
+        gap:56px;align-items:start}
+  .heroPanel{background:var(--surface);border:1px solid var(--rule);border-radius:4px;
+             padding:26px 26px 22px;margin-top:6px}
+  .heroPanel .pl{font-size:11px;font-weight:700;letter-spacing:.16em;color:var(--sub2);margin:0 0 18px}
+  .heroPanel ul{list-style:none;margin:0;padding:0;display:grid;gap:1px;background:var(--rule);
+                border:1px solid var(--rule);border-radius:4px;overflow:hidden}
+  .heroPanel li{background:var(--surface);display:flex;align-items:center;gap:12px;padding:12px 14px}
+  .heroPanel li img{height:20px;width:auto;max-width:140px;display:block}
+  .heroPanel li span{font-size:11.5px;color:var(--sub2);margin-left:auto;white-space:nowrap}
+  @media(max-width:900px){ .hero{grid-template-columns:1fr;gap:36px} .heroPanel{margin-top:0} }
+  .bar{width:44px;height:5px;background:var(--accent);margin-bottom:32px}
+  .eyebrow{font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--accent);margin:0 0 18px}
+  h1{font-size:clamp(32px,4.2vw,54px);line-height:1.32;font-weight:800;margin:0 0 22px;letter-spacing:-.02em}
+  .name{font-size:clamp(15px,2.4vw,18px);color:var(--sub);margin:0 0 8px;font-weight:700}
+  .role{font-size:14px;color:var(--sub2);margin:0 0 32px}
+  .lead{font-size:clamp(15px,1.3vw,16.5px);color:var(--sub);margin:0;max-width:46ch}
+
+  section{padding:72px 0;border-bottom:1px solid var(--rule)}
+  .kicker{font-size:12px;font-weight:700;letter-spacing:.18em;color:var(--accent);margin:0 0 10px}
+  h2{font-size:clamp(22px,3.4vw,30px);font-weight:800;line-height:1.45;margin:0 0 12px;letter-spacing:-.01em}
+  .sub{color:var(--sub2);font-size:15px;margin:0 0 36px;max-width:70ch}
+
+  .stats{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;
+         background:var(--rule);border:1px solid var(--rule);border-radius:4px;overflow:hidden}
+  .stat{background:var(--surface);padding:22px 16px}
+  .stat .n{font-size:clamp(20px,2.5vw,26px);font-weight:800;color:var(--accent);line-height:1.2;
+           font-variant-numeric:tabular-nums;letter-spacing:-.02em;white-space:nowrap}
+  .stat .n span{font-size:.55em}
+  .stat .l{font-size:12px;color:var(--sub2);margin-top:6px;line-height:1.6}
+
+  /* logo chip */
+  .logo{display:inline-flex;align-items:center;justify-content:center;background:#FFFFFF;
+        border:1px solid var(--rule);border-radius:6px;padding:11px 15px;margin-bottom:16px;min-height:52px}
+  .logo img{display:block;height:26px;width:auto;max-width:215px}
+  .logo.sm{padding:8px 12px;min-height:42px;margin-bottom:14px}
+  .logo.sm img{height:19px;max-width:165px}
+
+  .url{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;
+       color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-tint);padding-bottom:1px}
+  .url:hover{border-bottom-color:var(--accent)}
+  .url::after{content:"↗";font-size:11px;opacity:.7}
+
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px}
+  .card{background:var(--surface);border:1px solid var(--rule);border-radius:4px;
+        padding:28px 26px 26px;position:relative;overflow:hidden}
+  .card::before{content:"";position:absolute;inset:0 auto auto 0;width:100%;height:4px;background:var(--accent)}
+  .card.stopped::before{background:var(--weak)}
+  .card h3{font-size:19px;font-weight:800;margin:0 0 6px;line-height:1.4}
+  .cat{font-size:11.5px;font-weight:700;letter-spacing:.08em;color:var(--sub2);display:block;margin-bottom:8px}
+  .card p{font-size:14px;color:var(--sub);margin:14px 0 0;line-height:1.85}
+  .card ul{margin:16px 0 0;padding:0;list-style:none}
+  .card li{font-size:13.5px;color:var(--sub);padding:7px 0;border-top:1px solid var(--rule);
+           display:flex;justify-content:space-between;gap:14px}
+  .card li b{color:var(--text);font-weight:700;white-space:nowrap;font-variant-numeric:tabular-nums}
+  .pill{display:inline-block;font-size:11.5px;font-weight:700;padding:3px 11px;border-radius:999px;
+        background:var(--accent-tint);color:var(--accent)}
+  .pill.g{background:color-mix(in srgb,var(--good) 15%,transparent);color:var(--good)}
+  .note{margin-top:18px;padding-top:16px;border-top:1px solid var(--rule);
+        font-size:13px;color:var(--sub2);line-height:1.8}
+
+  /* 合トレ */
+  .wide{background:var(--surface);border:1px solid var(--rule);border-radius:4px;
+        padding:32px 30px;position:relative;overflow:hidden;margin-top:20px}
+  .wide::before{content:"";position:absolute;inset:0 auto auto 0;width:100%;height:4px;background:var(--accent)}
+  .wide p{font-size:14.5px;color:var(--sub);margin:14px 0 0;line-height:1.9;max-width:70ch}
+  .quals{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;
+         background:var(--rule);border:1px solid var(--rule);border-radius:4px;overflow:hidden;margin-top:26px}
+  .qual{background:var(--bg);padding:22px 18px}
+  .qual .qn{font-size:15px;font-weight:800;margin:0 0 12px;line-height:1.5}
+  .qual dl{margin:0;font-size:12px;color:var(--sub2);line-height:1.7}
+  .qual dl div{display:flex;justify-content:space-between;gap:10px;padding:5px 0;border-top:1px dashed var(--rule)}
+  .qual dl div:first-child{border-top:none}
+  .qual dt,.qual dd{margin:0}
+  .qual dd{color:var(--text);font-weight:700;text-align:right;font-variant-numeric:tabular-nums}
+  .feat{display:flex;flex-wrap:wrap;gap:7px;margin-top:24px}
+  .feat span{font-size:11.5px;background:var(--tint);color:var(--sub);padding:5px 11px;border-radius:999px}
+
+  .lesson{background:var(--surface);border:1px solid var(--rule);border-left:4px solid var(--bad);
+          border-radius:4px;padding:26px 28px;margin-bottom:16px}
+  .lesson h3{margin:0 0 4px;font-size:17px;font-weight:800}
+  .lesson .why{font-size:13.5px;color:var(--bad);font-weight:700;margin:8px 0 12px}
+  .lesson p{margin:0;font-size:14px;color:var(--sub);line-height:1.85}
+
+  .principle{background:var(--dark);border-radius:4px;padding:40px 36px;color:#E7EBE9}
+  .principle .q{font-size:clamp(18px,3vw,24px);font-weight:800;line-height:1.6;margin:0 0 22px;color:var(--accent)}
+  .principle ol{margin:0;padding-left:1.3em}
+  .principle li{font-size:15px;margin-bottom:10px;color:#C9CFCD;line-height:1.8}
+  .principle li b{color:#FFF}
+
+  .offer{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+  .offer div{background:var(--tint);border-radius:4px;padding:24px}
+  .offer h3{margin:0 0 8px;font-size:16px;font-weight:800}
+  .offer p{margin:0;font-size:13.5px;color:var(--sub);line-height:1.8}
+
+  footer{padding:56px 0 80px}
+  .contact{font-size:15px;color:var(--sub)}
+  .contact a{font-weight:700;text-decoration:none;border-bottom:2px solid var(--accent-tint)}
+  .fine{margin-top:28px;font-size:12px;color:var(--weak)}
+
+  @media(max-width:1000px){ .stats{grid-template-columns:repeat(3,1fr)} }
+  @media(max-width:560px){ .stats{grid-template-columns:repeat(2,1fr)} }
+  @media(max-width:640px){
+    header{padding:64px 0 44px}
+    section{padding:56px 0}
+    .card li{flex-direction:column;gap:2px}
+    .wrap{padding:0 20px}
+    .wide{padding:26px 22px}
+    .logo img{max-width:170px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="bar"></div>
+    <div class="hero">
+      <div>
+        <p class="eyebrow">AI × 事業構築</p>
+        <h1>AIで、事業を立ち上げて<br>運用しています。</h1>
+        <p class="name">寺門 諒太（Terakado Ryota）</p>
+        <p class="role">LEXOR 代表 ／ ノウンズ株式会社 CSO・CAIO</p>
+        <p class="lead">
+          大企業の新規事業立ち上げと、スタートアップの事業グロース／AI活用支援。
+          自分でも複数のサービスを企画・実装・運用しており、
+          成功も失敗も含めて、実際に動かした事業から得たことをお伝えしています。
+        </p>
+      </div>
+      <div class="heroPanel">
+        <p class="pl">運営中のサービス</p>
+        <ul>
+          <li><img src="logos/reform.svg" alt="リフォーム補助金ナビ"><span>月10万PV</span></li>
+          <li><img src="logos/reformlead.svg" alt="ReformLead"><span>業務SaaS</span></li>
+          <li><img src="logos/claudeworks.svg" alt="Claude Works"><span>月2万アクセス</span></li>
+          <li><img src="logos/goutore-full.svg" alt="合トレ"><span>4資格</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <p class="kicker">TRACK RECORD</p>
+    <h2>数字</h2>
+    <p class="sub">自社で企画・実装・運用しているサービスの実績です。</p>
+    <div class="stats">
+      <div class="stat"><div class="n">24,000</div><div class="l">自動生成した検索流入ページ数</div></div>
+      <div class="stat"><div class="n">100,000<span>/月</span></div><div class="l">メディア月間PV</div></div>
+      <div class="stat"><div class="n">100<span>件/月</span></div><div class="l">送客リード数</div></div>
+      <div class="stat"><div class="n">100,000<span>社</span></div><div class="l">構築した事業者データベース</div></div>
+      <div class="stat"><div class="n">4<span>資格</span></div><div class="l">学習サービスの対応資格数</div></div>
+      <div class="stat"><div class="n">3<span>日</span></div><div class="l">1資格あたりのリリース期間</div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="kicker">BUSINESSES</p>
+    <h2>手がけている事業</h2>
+    <p class="sub">企画から実装・運用まで、すべて自分で回しています。</p>
+
+    <div class="cards">
+
+      <div class="card">
+        <span class="logo"><img src="logos/reform.svg" alt="リフォーム補助金ナビ"></span>
+        <span class="cat">メディア × SaaS</span>
+        <h3>リフォーム補助金ナビ</h3>
+        <a class="url" href="https://reform-hojo.jp" target="_blank" rel="noopener">reform-hojo.jp</a>
+        <p>
+          全国1,741市区町村にバラバラに存在する補助金情報を統合し、
+          「市区町村 × 工事種別」で約24,000ページを自動生成。
+          手で集めると人件費が売上を超えるため、20年間誰も網羅していなかった領域です。
+        </p>
+        <ul>
+          <li><span>補助金データ</span><b>107件 → 12,959件</b></li>
+          <li><span>月間PV</span><b>約 100,000</b></li>
+          <li><span>月間リード</span><b>約 100件</b></li>
+          <li><span>自動生成ページ</span><b>約 24,000</b></li>
+          <li><span>収益</span><b>送客 / SaaS / 広告の3層</b></li>
+        </ul>
+        <!-- M&A に関する記載（掲載可の確認済み・社名は非開示） -->
+        <div class="note">
+          <span class="pill g">現在</span>　複数社とM&amp;A協議中（社名非開示）。
+          評価いただいているのはコードではなく、毎日更新されるデータベースと事業者との関係です。
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="logo"><img src="logos/reformlead.svg" alt="ReformLead"></span>
+        <span class="cat">リフォーム会社向け 業務SaaS</span>
+        <h3>ReformLead</h3>
+        <a class="url" href="https://reform-hojo.jp/for-business" target="_blank" rel="noopener">reform-hojo.jp/for-business</a>
+        <p>
+          集客・案件管理・補助金・AIをひとつにしたオールインワン業務SaaS。
+          リフォーム補助金ナビに集まったリードを、そのまま受け取れるのが最大の特徴です。
+          売っているのは「ソフト」ではなく「仕事が来る入り口」。
+          登録無料・初期費用0で配り、受注できたぶんだけ成果報酬をいただく設計にしています。
+        </p>
+        <ul>
+          <li><span>登録業者DB</span><b>約 100,000社</b></li>
+          <li><span>送客成果報酬</span><b>¥8,000 〜 ¥120,000 / 件</b></li>
+          <li><span>月額プラン</span><b>¥0 / ¥4,980 / ¥9,800</b></li>
+          <li><span>主な機能</span><b>集客 / 案件管理 / 補助金 / AI</b></li>
+        </ul>
+        <div class="note">
+          前金・月額固定なしでリスクを反転させ、無料プランを成果報酬リードの入り口にしています。
+          機能ではなく、値付けと言い方で選ばれている事業です。
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="logo"><img src="logos/claudeworks.svg" alt="Claude Works"></span>
+        <span class="cat">メディア × 法人研修</span>
+        <h3>Claude Works</h3>
+        <a class="url" href="https://claudelab.jp" target="_blank" rel="noopener">claudelab.jp</a>
+        <p>
+          AI活用の実践情報を発信するメディアを運営し、
+          そこから企業のAI研修・導入支援のご相談をいただいています。
+          サービスを先に作らず、流通（読者）を先に作った事業です。
+        </p>
+        <ul>
+          <li><span>月間アクセス</span><b>約 20,000</b></li>
+          <li><span>研修のご相談</span><b>月に数十件</b></li>
+          <li><span>公開ページ数</span><b>364</b></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="wide">
+      <span class="logo"><img src="logos/goutore-full.svg" alt="合トレ"></span>
+      <span class="cat">学習メディア × アプリ × 有料教材</span>
+      <h3 style="font-size:21px;font-weight:800;margin:0 0 6px">合トレ</h3>
+      <a class="url" href="https://goutore.jp" target="_blank" rel="noopener">goutore.jp</a>
+      <p>
+        <b>4つの国家資格</b>を、1ドメイン・1会員基盤で配信する学習プロダクト。
+        一問一答・過去問演習・論点整理・暗記表・模試までを共通の型で作り、
+        資格が増えても同じ仕組みで横展開できるようにしています。
+        登録不要で学習でき、有料教材は買い切りで販売しています。
+      </p>
+
+      <div class="quals">
+        <div class="qual">
+          <span class="logo sm"><img src="logos/goutore-takken.svg" alt="合トレ 宅建"></span>
+          <p class="qn">宅地建物取引士</p>
+          <dl>
+            <div><dt>一問一答</dt><dd>784問</dd></div>
+            <div><dt>過去問</dt><dd>令和4〜7年度</dd></div>
+            <div><dt>実戦模試</dt><dd>3回</dd></div>
+            <div><dt>ネイティブアプリ</dt><dd>iOS / Android</dd></div>
+          </dl>
+        </div>
+        <div class="qual">
+          <span class="logo sm"><img src="logos/goutore-gyosei.svg" alt="合トレ 行政書士"></span>
+          <p class="qn">行政書士</p>
+          <dl>
+            <div><dt>一問一答</dt><dd>620問</dd></div>
+            <div><dt>過去問</dt><dd>令和2〜7年度</dd></div>
+            <div><dt>択一演習</dt><dd>50問 / 予想模試1回</dd></div>
+            <div><dt>ネイティブアプリ</dt><dd>iOS / Android</dd></div>
+          </dl>
+        </div>
+        <div class="qual">
+          <span class="logo sm"><img src="logos/goutore-chintai.svg" alt="合トレ 賃貸不動産経営管理士"></span>
+          <p class="qn">賃貸不動産経営管理士</p>
+          <dl>
+            <div><dt>過去問</dt><dd>令和3〜7年度</dd></div>
+            <div><dt>論点整理</dt><dd>あり</dd></div>
+            <div><dt>暗記表</dt><dd>分野別</dd></div>
+          </dl>
+        </div>
+        <div class="qual">
+          <span class="logo sm" style="background:var(--tint);border-style:dashed">
+            <span style="font-size:12px;font-weight:800;color:var(--sub2)">合トレ キャリコン</span>
+          </span>
+          <p class="qn">国家資格<br>キャリアコンサルタント</p>
+          <dl>
+            <div><dt>問題</dt><dd>完全オリジナル</dd></div>
+            <div><dt>公式過去問</dt><dd>転載せず出典を案内</dd></div>
+            <div><dt>試験情報</dt><dd>実施団体に準拠</dd></div>
+          </dl>
+        </div>
+      </div>
+
+      <div class="feat">
+        <span>今日の10問（毎日入れ替え・誤答優先）</span>
+        <span>○×一問一答ドリル</span>
+        <span>50問模試</span>
+        <span>復習リスト（誤答・苦手論点）</span>
+        <span>学習記録・分野別成績</span>
+        <span>論点整理</span>
+        <span>分野別暗記表・図解</span>
+        <span>年度別過去問演習</span>
+        <span>学習ガイド</span>
+        <span>有料教材（買い切り）</span>
+        <span>予想模試パック</span>
+        <span>iOS / Android アプリ（オフライン対応）</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="kicker">WHAT DIDN'T WORK</p>
+    <h2>止まった事業と、そこで分かったこと</h2>
+    <p class="sub">
+      同じ人間が同じツールで作っても、結果は分かれます。
+      止めた2つは、どちらも「作れるか」は問題ではありませんでした。
+    </p>
+
+    <div class="lesson">
+      <span class="logo sm"><img src="logos/kabuscreen.svg" alt="KabuScreen AI"></span>
+      <h3>投資スクリーニングツール</h3>
+      <a class="url" href="https://kabuscreen.jp" target="_blank" rel="noopener">kabuscreen.jp</a>
+      <p class="why">止まった理由：金を受け取る手段がなかった</p>
+      <p>
+        全上場3,848社の決算を毎日監視し、条件に合う銘柄を通知する仕組みまで作り込みました。
+        しかし投資情報は決済側から見てセンシティブな領域で、審査・条件の折り合いがつきませんでした。
+        <b>プロダクトが完成しても、決済が通らなければ売上はゼロ。</b>
+        規約を読むだけで、着手前に半日で分かったことでした。
+      </p>
+    </div>
+
+    <div class="lesson">
+      <span class="logo sm"><img src="logos/zairyu.svg" alt="Zairyu Navi"></span>
+      <h3>在留外国人向け多言語メディア</h3>
+      <p class="why">止まった理由：マネタイズの出口が弱かった</p>
+      <p>
+        多言語で1,513ページを構築しました。作る側はやり切りましたが、収益はゼロ。
+        出口に想定していた士業の方々は送客に予算を張る商習慣が薄く、
+        さらに<b>この市場は「紹介」で動いていた</b>のに、こちらは「検索」で攻めていました。
+        経路の選択を間違えると、量では取り返せません。
+      </p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="kicker">PRINCIPLE</p>
+    <h2>5本から出た結論</h2>
+    <p class="sub">回った事業は全部これを先に押さえ、止まった事業は全部ここでつまずきました。</p>
+    <div class="principle">
+      <p class="q">作る前に、3つだけ確認する。</p>
+      <ol>
+        <li><b>誰が払うか</b> — その相手は、この種のものに金を出す商習慣があるか</li>
+        <li><b>どう届くか</b> — その市場が「実際に使っている」経路は何か</li>
+        <li><b>受け取れるか</b> — 決済・審査・規制が通るか</li>
+      </ol>
+      <p style="margin:22px 0 0;font-size:14px;color:#96A19E;line-height:1.85">
+        AIが下げたのは「作るコスト」だけで、「届けるコスト」はむしろ上がっています。
+        だから、作る前に出口を確認する。この3つは数日で終わります。
+      </p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="kicker">SERVICES</p>
+    <h2>お手伝いできること</h2>
+    <p class="sub">机上論ではなく、自分で運用している事業をそのまま教材にしてお話しします。</p>
+    <div class="offer">
+      <div>
+        <h3>法人向け AI活用研修</h3>
+        <p>「導入したのに使われない」を、実業務で成果が出る状態へ。営業・企画・運営など、部署ごとの業務に合わせて設計します。</p>
+      </div>
+      <div>
+        <h3>新規事業の立ち上げ支援</h3>
+        <p>市場の見立てから、出口（誰が払うか・どう届くか）の検証、実装・公開まで。作る前に止めるべきかの判断もお伝えします。</p>
+      </div>
+      <div>
+        <h3>AIを使った事業実装</h3>
+        <p>メディア・SaaS・業務システムの設計と実装。大量ページ生成、エージェント設計、運用の自動化とコスト管理まで。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p class="kicker">CONTACT</p>
+    <p class="contact">
+      研修・事業支援のご相談は <a href="mailto:support@lexor.jp">support@lexor.jp</a> までお気軽にどうぞ。
+    </p>
+    <p class="fine">© 2026 Ryota Terakado</p>
+  </div>
+</footer>
+
+</body>
+</html>
