@@ -125,6 +125,21 @@
   .principle li{font-size:15px;margin-bottom:10px;color:#C9CFCD;line-height:1.8}
   .principle li b{color:#FFF}
 
+  /* 経歴 */
+  .career{position:relative;margin-top:4px;padding-left:28px}
+  .career::before{content:"";position:absolute;left:4px;top:10px;bottom:12px;width:1px;background:var(--rule)}
+  .career .item{position:relative;padding-bottom:28px}
+  .career .item:last-child{padding-bottom:0}
+  .career .item::before{content:"";position:absolute;left:-28px;top:9px;width:9px;height:9px;border-radius:50%;
+                        background:var(--bg);border:1.5px solid var(--rule);box-sizing:border-box}
+  .career .item.now::before{background:var(--accent);border-color:var(--accent)}
+  .career .co{margin:0;font-size:16.5px;font-weight:800;line-height:1.6;
+              display:flex;flex-wrap:wrap;align-items:baseline;gap:10px}
+  .career .co em{font-style:normal;font-size:12px;font-weight:700;color:var(--sub2);
+                 font-variant-numeric:tabular-nums;letter-spacing:.02em}
+  .career .ro{margin:5px 0 0;font-size:14px;color:var(--sub);line-height:1.85;max-width:72ch}
+  @media(max-width:640px){ .career{padding-left:22px} .career .item::before{left:-22px} }
+
   .offer{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
   .offer div{background:var(--tint);border-radius:4px;padding:24px}
   .offer h3{margin:0 0 8px;font-size:16px;font-weight:800}
@@ -157,7 +172,7 @@
         <p class="eyebrow">AI × 事業構築</p>
         <h1>AIで、事業を立ち上げて<br>運用しています。</h1>
         <p class="name">寺門 諒太（Terakado Ryota）</p>
-        <p class="role">LEXOR 代表 ／ ノウンズ株式会社 CSO・CAIO</p>
+        <p class="role">ノウンズ株式会社 執行役員 CSO・CAIO ／ LEXOR 代表</p>
         <p class="lead">
           大企業の新規事業立ち上げと、スタートアップの事業グロース／AI活用支援。
           自分でも複数のサービスを企画・実装・運用しており、
@@ -393,6 +408,56 @@
         AIが下げたのは「作るコスト」だけで、「届けるコスト」はむしろ上がっています。
         だから、作る前に出口を確認する。この3つは数日で終わります。
       </p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="kicker">CAREER</p>
+    <h2>経歴</h2>
+    <p class="sub">
+      証券・コンサルティングから事業会社へ。事業の立ち上げ、グロース、M&amp;A後の統合まで、
+      事業のそれぞれの段階を実務で担当してきました。
+    </p>
+
+    <div class="career">
+      <div class="item">
+        <p class="co">大和証券株式会社 <em>約2年</em></p>
+        <p class="ro">リテール営業</p>
+      </div>
+      <div class="item">
+        <p class="co">アクセンチュア株式会社</p>
+        <p class="ro">金融機関の経営コンサルティング</p>
+      </div>
+      <div class="item">
+        <p class="co">ecbo株式会社</p>
+        <p class="ro">
+          事業責任者として、事業戦略の立案、オンライン・オフライン両面のマーケティング戦略の実行、
+          セールス戦略の策定を担当
+        </p>
+      </div>
+      <div class="item">
+        <p class="co">クービック株式会社</p>
+        <p class="ro">事業統括として、マーケティング・カスタマーサクセスを主軸に事業を牽引</p>
+      </div>
+      <div class="item">
+        <p class="co">hey株式会社（現・STORES株式会社） <em>2021年9月 〜</em></p>
+        <p class="ro">
+          クービック株式会社とのM&amp;Aにより、カスタマーサクセス本部長に就任。
+          4事業のカスタマーサクセス業務全般の責任者として、既存顧客の継続率向上と組織構築を担当
+        </p>
+      </div>
+      <div class="item now">
+        <p class="co">ノウンズ株式会社 <span class="pill">現在</span></p>
+        <p class="ro">マーケティングSaaS。執行役員 CSO・CAIO として、戦略とAI事業を統括</p>
+      </div>
+      <div class="item now">
+        <p class="co">LEXOR（個人事業） <span class="pill">現在</span></p>
+        <p class="ro">
+          大企業の新規事業立ち上げ、スタートアップの事業グロース／AI活用支援／各種事業開発
+        </p>
+      </div>
     </div>
   </div>
 </section>
